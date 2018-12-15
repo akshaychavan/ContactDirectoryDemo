@@ -2,16 +2,18 @@ package com.contact.directory.service;
 
 import java.util.List;
 
+import com.contact.directory.dto.ContactDTO;
+
 public interface ContactDirectoryService {
  
-	public List<String> getContacts();
+	public List<ContactDTO> getContacts();
 
-	public String getContact(String contact);
+	public ContactDTO getContact(int contactID);
 
-	public boolean createContact(String contact);
+	public boolean createContact(ContactDTO contact);
 
-	public boolean updateContact(String oldContact, String newContact);
+	public boolean updateContact(ContactDTO newContactDTO);
 
-	public boolean deleteContact(String contact);
+	public boolean deleteContact(int contactID);
 
 }
