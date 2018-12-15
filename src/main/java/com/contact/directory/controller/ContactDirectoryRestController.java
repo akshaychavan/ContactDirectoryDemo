@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.contact.directory.dto.ContactDTO;
 import com.contact.directory.service.ContactDirectoryService;
 
 @Controller
@@ -19,27 +21,27 @@ public class ContactDirectoryRestController {
 	private ContactDirectoryService contactDirectoryService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public @ResponseBody List<String> getContacts() {
+	public @ResponseBody List<ContactDTO> getContacts() {
 			return contactDirectoryService.getContacts();
 		}
 	
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
-	public @ResponseBody String getContact(@PathVariable("name") String contact) {
-			return contactDirectoryService.getContact(contact);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public @ResponseBody ContactDTO getContact(@PathVariable("id") int contactID) {
+			return contactDirectoryService.getContact(contactID);
 		}
 		
-	@RequestMapping(value = "/create/{name}", method = RequestMethod.POST)
-	public @ResponseBody boolean createContact(@PathVariable("name") String contact) {
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public @ResponseBody boolean createContact(@RequestBody ContactDTO contact) {
 			return contactDirectoryService.createContact(contact);
 		}
 		
-	@RequestMapping(value = "/update/{oldname}/{newname}", method = RequestMethod.PUT)
-	public @ResponseBody boolean updateContact(@PathVariable("oldname") String oldContact,@PathVariable("newname")  String newContact) {
-			return contactDirectoryService.updateContact(oldContact, newContact);
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public @ResponseBody boolean updateContact(@RequestBody ContactDTO newContact) {
+			return contactDirectoryService.updateContact(newContact);
 		}
 		
-	@RequestMapping(value = "/delete/{name}", method = RequestMethod.DELETE)
-	public @ResponseBody boolean deleteContact(@PathVariable("name") String contact) {
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody boolean deleteContact(@PathVariable("id") int contact) {
 			return contactDirectoryService.deleteContact(contact);
 		}
 	 
