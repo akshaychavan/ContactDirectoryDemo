@@ -11,7 +11,7 @@
 
   <properties>
         <springframework.version>4.2.0.RELEASE</springframework.version>
-        <jackson.version>2.5.3</jackson.version>
+        <jackson.version>2.8.11.1</jackson.version>
 		<serializer.version>2.8.1</serializer.version>
     </properties>
   
